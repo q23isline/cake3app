@@ -6,7 +6,9 @@ class HelloController extends AppController {
   public $autoRender = false;
 
   public function index(){
-    echo "hello world!";
+    $this->setAction("other"); // フォワード
+    // ↓missing controller
+    // $this->redirect("./other"); // リダイレクト
   }
 
   public function other(){
