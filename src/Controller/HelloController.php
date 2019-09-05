@@ -19,6 +19,6 @@ class HelloController extends AppController {
     } else {
       $result = "empty.";
     }
-    $this->set("result", $result);
+    $this->set("result", htmlspecialchars($result));
   }
 }
