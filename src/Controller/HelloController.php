@@ -6,6 +6,5 @@ class HelloController extends AppController {
   public $autoRender = true;
 
   public function index(){
-    $this->viewBuilder()->autoLayout(false);
   }
 }
