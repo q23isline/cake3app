@@ -4,12 +4,9 @@
 </p>
 <?=$this->Form->create(null,
   ['type'=>'post', 'url'=>['action'=>'index']]) ?>
-  <?=$this->Form->radio("HelloForm.radio1",
-    [
-      ['text'=>'ウインドウズ', 'value'=>'Windows'],
-      ['text'=>'リナックス', 'value'=>'Linux'],
-      ['text'=>'マックOS', 'value'=>'macOS']
-    ],
-    ['label'=>true, 'value'=>'Linux']) ?>
+  <?php echo $this->Form->select('HelloForm.select1',
+    array('ウィンドウズ'=>'Windows',
+      'リナックス'=>'Linux', 'マックOS'=>'MacOS X'),
+    array('empty'=>'項目を選んでください')); ?>
   <?=$this->Form->submit("送信") ?>
 <?=$this->Form->end(); ?>
