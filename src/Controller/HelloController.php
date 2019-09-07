@@ -9,6 +9,17 @@ class HelloController extends AppController {
   }
 
   public function index(){
+    $result = "";
+    if ($this->request->isPost()){
+      $result = "<pre>※送信された情報<br/>";
+      foreach($this->request->data['HelloForm'] as $key => $val){
+        $result .= $key . ' => ' . $val;
+      }
+      $result .= "</pre>";
+    } else {
+      $result = "※なにか書いて送信してください。";
+    }
+    $this->set("result", $result);
   }
 
   public function sendForm(){
