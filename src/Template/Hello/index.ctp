@@ -6,10 +6,17 @@
   ['type'=>'post', 'url'=>['action'=>'index']]) ?>
   <?= $this->Form->select('HelloForm.select1',
     [
-      'ウィンドウズ'=>'Windows',
-      'リナックス'=>'Linux',
-      'マックOS'=>'MacOS X'
+      'PC'=>[
+        'ウィンドウズ'=>'Windows',
+        'リナックス'=>'Linux',
+        'マックOS'=>'MacOS X'
+      ],
+      'mobile'=>[
+        'アンドロイド'=>'Android',
+        'アイフォン'=>'iPhone',
+        'ガラケー'=>'cellphone'
+      ]
     ],
-    ['size'=>5, 'multiple'=>true, 'empty'=>'項目を選んでください']) ?>
+    ['size'=>10, 'empty'=>'項目を選んでください']) ?>
   <?=$this->Form->submit("送信") ?>
 <?=$this->Form->end(); ?>
