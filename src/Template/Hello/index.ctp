@@ -10,6 +10,6 @@
       'リナックス'=>'Linux',
       'マックOS'=>'MacOS X'
     ],
-    ['size'=>5, 'empty'=>'項目を選んでください']) ?>
+    ['size'=>5, 'multiple'=>true, 'empty'=>'項目を選んでください']) ?>
   <?=$this->Form->submit("送信") ?>
 <?=$this->Form->end(); ?>
