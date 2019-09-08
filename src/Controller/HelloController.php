@@ -11,17 +11,9 @@ class HelloController extends AppController {
   public function index(){
     $result = "";
     if ($this->request->isPost()){
-      $result = "<pre>※送信された情報<br/>";
-      foreach($this->request->data['HelloForm'] as $key => $val){
-        $v_str = '';
-        foreach($val as $v){
-          $v_str .= $v . ' ';
-        }
-        $result .= $key . ' => ' . $v_str;
-      }
-      $result .= "</pre>";
+      $result = $this->request->data['HelloForm']['date'];
     } else {
-      $result = "※なにか書いて送信してください。";
+      $result = "なにか書いて送信してください。";
     }
     $this->set("result", $result);
   }
