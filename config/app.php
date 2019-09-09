@@ -254,13 +254,19 @@ return [
     'Datasources' => [
         'default' => [
             'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Sqlite',
+            'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'username' => '',
+            'host' => 'localhost',
+            'username' => 'root',
             'password' => '',
-            'database' => ROOT . DS . 'db' . DS . 'mydata.sqlite3',
+            'database' => 'mydata',
             'encoding' => 'utf8',
+            'timezone' => 'UTC',
+            'flags' => [],
             'cacheMetadata' => true,
+            'log' => false,
+            'quoteIdentifiers' => false,
+            'url' => env('DATABASE_URL', null),
         ],
     ],
 
