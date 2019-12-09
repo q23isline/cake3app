@@ -5,7 +5,8 @@ class BoardsController extends AppController {
   public function index(){
     $this->set('entity', $this->Boards->newEntity());
     if ($this->request->is('post')) {
-      $data = $this->Boards->findById($this->request->data['id']);
+      $id = $this->request->data['id'];
+      $data = $this->Boards->findByIdOrName($id, $id);
     } else {
       $data = $this->Boards->find('all');
     }
