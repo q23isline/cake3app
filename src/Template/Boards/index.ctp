@@ -9,9 +9,6 @@
 <hr>
 
 <p>COUNT: <?= $count ?></p>
-<p>first: <?php print_r($first); ?></p>
-<p>min: <?= $min ?></p>
-<p>max: <?= $max ?></p>
 
 <table>
 <tr>
