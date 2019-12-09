@@ -8,6 +8,11 @@
 
 <hr>
 
+<p>COUNT: <?= $count ?></p>
+<p>first: <?php print_r($first); ?></p>
+<p>min: <?= $min ?></p>
+<p>max: <?= $max ?></p>
+
 <table>
 <tr>
   <th>ID</th>
@@ -16,10 +21,9 @@
   <th>CONTENT</th>
 </tr>
 <?php
-$arr = $data->toArray();
-for($i = 0; $i < count($arr); $i++){
+for($i = 0; $i < count($data); $i++){
   echo $this->Html->tableCells(
-    $arr[$i]->toArray(),
+    $data[$i]->toArray(),
     ['style'=>'background-color:#f0f0f0'],
     ['style'=>'font-weight:bold'],
     true);
