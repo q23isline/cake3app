@@ -5,15 +5,10 @@ class BoardsController extends AppController {
   public function index(){
     $this->set('entity', $this->Boards->newEntity());
     if ($this->request->is('post')) {
-      $data = $this->Boards->find('all', [
-        'conditions' => [
-          'name like' => "%{$this->request->data['name']}%"
-        ]
-      ]);
+      $data = $this->Boards->findById($this->request->data['id']);
     } else {
       $data = $this->Boards->find('all');
     }
-    $data->order(['name'=>'ASC', 'id'=>'DESC']);
     $this->set('data', $data->toArray());
     $this->set('count', $data->count());
   }
