@@ -1,6 +1,10 @@
 <?php
 namespace App\Controller;
 
+// 以下のuse文を追記する
+use \Exception;
+use Cake\Log\Log;
+
 class BoardsController extends AppController {
   public function index(){
     $this->set('entity', $this->Boards->newEntity());
@@ -21,5 +25,18 @@ class BoardsController extends AppController {
     }
 
     return $this->redirect(['action' => 'index']);
+  }
+
+  public function delRecord(){
+    if ($this->request->is('post')) {
+      try {
+        $entity = $this->Boards->get($this->request->data['id']);
+        $this->Boards->delete($entity);
+      } catch(Exception $e) {
+        Log::write('debug', $e->getMessage());
+      }
+    }
+
+    $this->redirect(['action' => 'index']);
   }
 }
