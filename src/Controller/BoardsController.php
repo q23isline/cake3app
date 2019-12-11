@@ -37,11 +37,9 @@ class BoardsController extends AppController {
     if ($this->request->is('put')) {
       try {
         $entity = $this->Boards->get($this->request->data['id']);
-        $this->Boards->patchEntity($entity, $this->request->data);
+        $entity->content = $this->request->data['content'];
         $this->Boards->save($entity);
       } catch(Exception $e) {
-        // Logg:write('debug', $e->getMessage());
-        // ↑スペル誤り　↓が正しい
         Log::write('debug', $e->getMessage());
       }
     }
