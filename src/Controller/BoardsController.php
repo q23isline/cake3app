@@ -7,7 +7,7 @@ use Cake\Log\Log;
 
 class BoardsController extends AppController {
   public function index($id = null){
-      $data = $this->Boards->get('hanako');
+      $data = $this->Boards->find('list')->toArray();
       $this->set('data', $data);
   }
 
