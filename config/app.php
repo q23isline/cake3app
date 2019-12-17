@@ -262,6 +262,16 @@ return [
             'encoding' => 'utf8',
             'cacheMetadata' => true,
         ],
+        'default2' => [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Sqlite',
+            'persistent' => false,
+            'username' => '',
+            'password' => '',
+            'database' => ROOT . DS . 'db' . DS . 'mydata2.sqlite3',
+            'encoding' => 'utf8',
+            'cacheMetadata' => true,
+        ],
     ],
 
     /**
