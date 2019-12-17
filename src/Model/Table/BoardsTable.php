@@ -5,6 +5,6 @@ use Cake\ORM\Table;
 
 class BoardsTable extends Table {
   public static function defaultConnectionName() {
-    return 'default2';
+    return 'default';
   }
 }
