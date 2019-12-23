@@ -3,20 +3,13 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 
 class BoardsTable extends Table
 {
-    public $qdata = null;
-
-    public function beforeFind(Event $event)
+    public function beforeFind(Event $event, Query $query)
     {
-        $qstr ='';
-        for ($i = 0; $i < count($event->data); $i++) {
-            $qstr .= $event->data[0]->sql() . '<br>\n';
-        }
-        $this->qdata = $qstr;
-        $query = $event->data[0];
-        $this->qdata = $query->sql();
+        $query->order(['name'=>'ASC']);
     }
 
     public static function defaultConnectionName()

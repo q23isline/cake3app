@@ -1,6 +1,8 @@
 <h1>Databaseサンプル</h1>
-<p><?= $qdata ?></p>
-<hr>
-<pre>
-    <?php print_r($data); ?>
-</pre>
+<table>
+    <?php foreach ($data as $obj): ?>
+    <tr>
+        <td><?= $obj->id . ': '. $obj->name ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
