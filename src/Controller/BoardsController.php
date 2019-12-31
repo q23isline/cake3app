@@ -11,6 +11,7 @@ class BoardsController extends AppController
     {
         $data = $this->Boards->find('all');
         $this->set('data', $data);
+        $this->set('entity', $this->Boards->newEntity());
     }
 
     public function addRecord()
