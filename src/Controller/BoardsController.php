@@ -15,8 +15,7 @@ class BoardsController extends AppController
             $data = $this->Boards
                          ->find()
                          ->where(['name like' => '%' . $input . '%'])
-                         ->orwhere(['title like' => '%' . $input . '%'])
-                         ->orwhere(['content like' => '%' . $input . '%']);
+                         ->select(['name', 'title']);
         }
         $this->set('data', $data);
         $this->set('entity', $this->Boards->newEntity());
