@@ -14,7 +14,7 @@ class BoardsController extends AppController
             $input = $this->request->data['input'];
             $data = $this->Boards
                          ->find()
-                         ->where(['name' => $input]);
+                         ->where(['id <=' => $input]);
         }
         $this->set('data', $data);
         $this->set('entity', $this->Boards->newEntity());
