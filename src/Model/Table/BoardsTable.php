@@ -1,53 +1,26 @@
 <?php
 namespace App\Model\Table;
 
-// ↓テキストに不足
-use Cake\Datasource\EntityInterface;
-use Cake\Event\Event;
 use Cake\ORM\Query;
+use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 class BoardsTable extends Table
 {
     /**
-     * Find前処理
+     * バリデーション
      *
-     * @param Event $event イベント
-     * @param Query $query クエリ
-     * @return void
+     * @param Validator $validator バリデート
+     * @return Validator
      */
-    public function beforeFind(Event $event, Query $query)
+    public function validationDefault(Validator $validator)
     {
-        $query->order(['name' => 'ASC']);
-    }
+        $validator->integer('id');
+        $validator->notEmpty('name');
+        $validator->notEmpty('title');
+        $validator->notEmpty('content');
 
-    /**
-     * デフォルト接続DB
-     *
-     * @return string
-     */
-    public static function defaultConnectionName()
-    {
-        return 'default';
-    }
-
-    /**
-     * Save前処理
-     *
-     * @param Event $event イベント
-     * @param EntityInterface $entity エンティティ
-     * @param array $options オプション
-     * @return bool
-     */
-    public function beforeSave(Event $event, EntityInterface $entity, $options)
-    {
-        $n = $this->find('all', [
-            'conditions' => ['name' => $entity->name],
-        ])->count();
-        if ($n == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $validator;
     }
 }

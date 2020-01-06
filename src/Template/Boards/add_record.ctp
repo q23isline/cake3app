@@ -7,11 +7,3 @@
 </fieldset>
 <?= $this->Form->button('送信') ?>
 <?= $this->Form->end() ?>
-
-<table>
-    <?php foreach ($data as $obj) : ?>
-    <tr>
-        <td><?= $obj ?></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
