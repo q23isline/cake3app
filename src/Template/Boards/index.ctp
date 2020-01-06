@@ -15,3 +15,13 @@
     </tr>
     <?php endforeach; ?>
 </table>
+
+<script>
+    var nameElement = document.querySelector('#name');
+    nameElement.addEventListener('invalid', function(e) {
+        if (nameElement.validity.valueMissing) {
+            e.target.setCustomValidity('ちゃんと入力してね');
+        } else if (!nameElement.validity.valid) {
+        }
+    }, false);
+</script>
