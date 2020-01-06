@@ -3,6 +3,11 @@ namespace App\Controller;
 
 class HelloController extends AppController
 {
+    /**
+     * 初期化
+     *
+     * @return void
+     */
     public function initialize()
     {
         $this->viewBuilder()->layout('Hello');
@@ -10,6 +15,11 @@ class HelloController extends AppController
         $this->set('footer', 'Hello\footer2');
     }
 
+    /**
+     * 一覧
+     *
+     * @return void
+     */
     public function index()
     {
         $result = "";
@@ -21,6 +31,11 @@ class HelloController extends AppController
         $this->set("result", $result);
     }
 
+    /**
+     * フォーム送信
+     *
+     * @return void
+     */
     public function sendForm()
     {
         $str = $this->request->data('text1');

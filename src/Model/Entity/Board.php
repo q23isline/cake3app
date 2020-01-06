@@ -6,7 +6,7 @@ use Cake\ORM\Entity;
 class Board extends Entity
 {
     protected $_accessible = [
-    '*' => true,
-    'id' => false
+        '*' => true,
+        'id' => false,
     ];
 }
