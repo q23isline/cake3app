@@ -17,7 +17,9 @@ class BoardsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator->integer('id');
-        $validator->notEmpty('name');
+        $validator->notEmpty('name')
+            ->minLength('name', 3, '3文字以上入力ください。')
+            ->maxLength('name', 20, '20文字以下で入力ください。');
         $validator->notEmpty('title');
         $validator->notEmpty('content');
 
