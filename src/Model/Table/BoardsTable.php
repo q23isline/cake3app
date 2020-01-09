@@ -25,4 +25,16 @@ class BoardsTable extends Table
 
         return $validator;
     }
+
+    /**
+     * アプリケーションルール
+     *
+     * @param RulesChecker $rules ルール
+     * @return RulesChecker
+     */
+    public function buildRules(RulesChecker $rules) {
+        $rules->add($rules->isUnique(['name'], 'すでに登録済みです。'));
+
+        return $rules;
+    }
 }
