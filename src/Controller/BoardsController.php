@@ -28,8 +28,8 @@ class BoardsController extends AppController
             if ($this->Boards->save($board)) {
                 $this->redirect(['action' => 'index']);
             }
-        }
 
-        $this->set('entity', $board);
+            $this->set('entity', $board);
+        }
     }
 }
