@@ -32,7 +32,8 @@ class BoardsTable extends Table
      * @param RulesChecker $rules ルール
      * @return RulesChecker
      */
-    public function buildRules(RulesChecker $rules) {
+    public function buildRules(RulesChecker $rules)
+    {
         $rules->add($rules->isUnique(['name'], 'すでに登録済みです。'));
 
         return $rules;
