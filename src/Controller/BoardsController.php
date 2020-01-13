@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use Cake\Validation\Validator;
+
 class BoardsController extends AppController
 {
     /**
@@ -25,8 +27,15 @@ class BoardsController extends AppController
     {
         if ($this->request->is('post')) {
             $board = $this->Boards->newEntity($this->request->data);
-            if ($this->Boards->save($board)) {
-                $this->redirect(['action' => 'index']);
+            $validator = new Validator();
+            $validator->email('name');
+            $errors = $validator->errors($this->request->data);
+            if (!empty($errors)) {
+                $this->Flash->error('EMAIL ERROR!!');
+            } else {
+                if ($this->Boards->save($board)) {
+                    $this->redirect(['action' => 'index']);
+                }
             }
 
             $this->set('entity', $board);
