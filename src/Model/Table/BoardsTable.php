@@ -22,6 +22,10 @@ class BoardsTable extends Table
             ->maxLength('name', 20, '20文字以下で入力ください。');
         $validator->notEmpty('title');
         $validator->notEmpty('content');
+        $validator->add('content', 'custom', [
+            'rule' => ['custom', '/\A\d+\z/'],
+            'message' => '整数を入力してください',
+        ]);
 
         return $validator;
     }
