@@ -17,29 +17,33 @@ class BoardsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator->integer('id');
-        $validator->notEmpty('name')
-            ->minLength('name', 3, '3文字以上入力ください。')
-            ->maxLength('name', 20, '20文字以下で入力ください。');
-        $validator->notEmpty('title');
-        $validator->notEmpty('content');
-        $validator->add('content', 'custom', [
-            'rule' => ['custom', '/\A\d+\z/'],
-            'message' => '整数を入力してください',
+        $validator->notEmpty('name', '必須項目です。');
+        $validator->notEmpty('title', '必須項目です。');
+        $validator->notEmpty('content', '必須項目です。');
+        $validator->add('name', 'maxRecords', [
+            'rule' => ['maxRecords', 'name', 5],
+            'message' => __('最大数を超えています。'),
+            'provider' => 'table',
         ]);
 
         return $validator;
     }
 
     /**
-     * アプリケーションルール
+     * $fieldで指定したフィールドの値が$dataであるレコード数を調べ、
+     * その結果が$sumより小さいかチェック
      *
-     * @param RulesChecker $rules ルール
-     * @return RulesChecker
+     * @param string $data チェックする値
+     * @param string $field フィールド名
+     * @param int $sum 同値を許容しない回数
+     * @return bool
      */
-    public function buildRules(RulesChecker $rules)
+    public function maxRecords($data, $field, $sum)
     {
-        $rules->add($rules->isUnique(['name'], 'すでに登録済みです。'));
+        $n = $this->find()
+            ->where([$field => $data])
+            ->count();
 
-        return $rules;
+        return $n < $sum ? true : false;
     }
 }
