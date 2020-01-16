@@ -17,7 +17,7 @@ class PeopleTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->hasMany('Boards');
+        // $this->hasMany('Boards'); // コメントアウトする
     }
 
     /**
