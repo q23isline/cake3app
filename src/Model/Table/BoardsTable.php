@@ -9,6 +9,17 @@ use Cake\Validation\Validator;
 class BoardsTable extends Table
 {
     /**
+     * 初期化
+     *
+     * @param array $config 設定
+     * @return void
+     */
+    public function initialize(array $config)
+    {
+        $this->belongsTo('People');
+    }
+
+    /**
      * バリデーション
      *
      * @param Validator $validator バリデート
@@ -27,23 +38,5 @@ class BoardsTable extends Table
         ]);
 
         return $validator;
-    }
-
-    /**
-     * $fieldで指定したフィールドの値が$dataであるレコード数を調べ、
-     * その結果が$sumより小さいかチェック
-     *
-     * @param string $data チェックする値
-     * @param string $field フィールド名
-     * @param int $sum 同値を許容しない回数
-     * @return bool
-     */
-    public function maxRecords($data, $field, $sum)
-    {
-        $n = $this->find()
-            ->where([$field => $data])
-            ->count();
-
-        return $n < $sum ? true : false;
     }
 }
