@@ -17,7 +17,7 @@ class PeopleTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->hasOne('Boards');
+        $this->hasMany('Boards');
     }
 
     /**
