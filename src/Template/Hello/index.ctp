@@ -6,6 +6,13 @@ $style = [
 ];
 ?>
 
+<?= $this->Html->meta(
+    'keywords',
+    null,
+    ['content' => 'php, cakephp, bake, フレームワーク'],
+    false
+) ?>
+
 <h1 id="hello">サンプル見出し</h1>
 
 <p style='<?= $this->Html->style($style, false) ?>'>
