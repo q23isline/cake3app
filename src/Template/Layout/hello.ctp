@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <?=$this->Html->charset(); ?>
+    <?=$this->Html->charset('utf-8') ?>
     <title>
       <?= $this->fetch('title') ?>
     </title>
