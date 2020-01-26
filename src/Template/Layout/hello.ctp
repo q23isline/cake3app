@@ -5,6 +5,7 @@
     <title>
       <?= $this->fetch('title') ?>
     </title>
+    <?= $this->Html->css('hello') ?>
     <?php
     echo $this->Html->css('cake.hello');
     echo $this->Html->script('cake.hello');

@@ -1,4 +1,4 @@
-<h1>サンプル見出し</h1>
+<h1 id="hello">サンプル見出し</h1>
 <pre>
 <?php print_r($result); ?>
 </pre>
