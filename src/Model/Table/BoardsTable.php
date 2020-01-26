@@ -28,14 +28,11 @@ class BoardsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator->integer('id');
+        $validator->integer('person_id')
+            ->requirePresence('person_id');
         $validator->notEmpty('name', '必須項目です。');
         $validator->notEmpty('title', '必須項目です。');
         $validator->notEmpty('content', '必須項目です。');
-        $validator->add('name', 'maxRecords', [
-            'rule' => ['maxRecords', 'name', 5],
-            'message' => __('最大数を超えています。'),
-            'provider' => 'table',
-        ]);
 
         return $validator;
     }
