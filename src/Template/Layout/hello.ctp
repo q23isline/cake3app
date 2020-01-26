@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?= $this->Html->doctype('xhtml-strict') ?>
 <html lang="ja">
   <head>
     <?=$this->Html->charset('utf-8') ?>
