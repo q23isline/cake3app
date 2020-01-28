@@ -25,3 +25,5 @@ $sampleImage = [
 </p>
 
 <?= $this->Html->image('sample.jpg', $sampleImage) ?>
+
+<?= $this->Html->link('<<sample link>>', 'http://google.com', ['target' => '_blank']) ?>
