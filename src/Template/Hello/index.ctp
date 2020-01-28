@@ -9,6 +9,10 @@ $sampleImage = [
     'height' => '200',
     'alt' => 'sample image',
 ];
+$pStyle = [
+    'align' => 'center',
+    'font-size' => '24pt',
+];
 ?>
 
 <?= $this->Html->meta(
@@ -27,3 +31,5 @@ $sampleImage = [
 <?= $this->Html->image('sample.jpg', $sampleImage) ?>
 
 <?= $this->Html->link('<<sample link>>', 'http://google.com', ['target' => '_blank']) ?>
+
+<?= $this->Html->para('p_style', 'これは、&lt;p&gt;タグを自動生成したものです。', $pStyle) ?>
