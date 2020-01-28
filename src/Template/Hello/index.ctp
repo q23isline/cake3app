@@ -33,3 +33,5 @@ $pStyle = [
 <?= $this->Html->link('<<sample link>>', 'http://google.com', ['target' => '_blank']) ?>
 
 <?= $this->Html->para('p_style', 'これは、&lt;p&gt;タグを自動生成したものです。', $pStyle) ?>
+
+<?= $this->Html->div('div_style', 'これは、&lt;div&gt;タグを自動生成したものです。', ['onclick' => 'alert("クリックしました。")']) ?>
