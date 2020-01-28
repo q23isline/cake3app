@@ -4,6 +4,11 @@ $style = [
     'font-size' => '14',
     'font-weight' => 'bold',
 ];
+$sampleImage = [
+    'width' => '200',
+    'height' => '200',
+    'alt' => 'sample image',
+];
 ?>
 
 <?= $this->Html->meta(
@@ -18,3 +23,5 @@ $style = [
 <p style='<?= $this->Html->style($style, false) ?>'>
     Hello
 </p>
+
+<?= $this->Html->image('sample.jpg', $sampleImage) ?>
