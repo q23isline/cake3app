@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Cake\I18n\I18n;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
@@ -17,6 +18,7 @@ class BoardsController extends AppController
     {
         parent::initialize();
         $this->people = TableRegistry::get('People');
+        I18n::locale('en_US');
     }
 
     /**
