@@ -52,19 +52,19 @@ msgstr ""
 
 #: Template/Boards/index.ctp:1
 msgid "board"
-msgstr "board"
+msgstr "掲示板"
 
 #: Template/Boards/index.ctp:4
 msgid "post"
-msgstr "post"
+msgstr "※投稿する"
 
 #: Template/Boards/index.ctp:11
 msgid "user"
-msgstr "user"
+msgstr "利用者"
 
 #: Template/Boards/index.ctp:12
 msgid "title"
-msgstr "title"
+msgstr "タイトル"
 
 #: Template/Books/add.ctp:9
 #: Template/Books/edit.ctp:9

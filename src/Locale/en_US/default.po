@@ -52,15 +52,15 @@ msgstr ""
 
 #: Template/Boards/index.ctp:1
 msgid "board"
-msgstr "board"
+msgstr "mini Board"
 
 #: Template/Boards/index.ctp:4
 msgid "post"
-msgstr "post"
+msgstr "* post your message! *"
 
 #: Template/Boards/index.ctp:11
 msgid "user"
-msgstr "user"
+msgstr "user name"
 
 #: Template/Boards/index.ctp:12
 msgid "title"
