@@ -64,3 +64,10 @@ $pStyle = [
         ['style' => 'color: #006600']
     ) ?>
 </span>
+
+<?= $this->Html->tag(
+    'span',
+    'これはHTMLヘルパーによる<span>タグの出力です。',
+    ['style' => 'color: #006600; font-weight: bold'],
+    true
+) ?>
