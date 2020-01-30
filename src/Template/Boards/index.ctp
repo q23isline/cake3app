@@ -1,15 +1,15 @@
-<h1>Boardサンプル</h1>
+<h1><?= __('board') ?></h1>
 <p>
     <?= $this->Html->link(
-        '※投稿する',
+        __('post'),
         ['action' => 'add']
     ) ?>
 </p>
 <div>
     <table>
         <tr>
-            <th width='25%'>投稿者</th>
-            <th>タイトル</th>
+            <th width='25%'><?= __('user') ?></th>
+            <th><?= __('title') ?></th>
         </tr>
         <?php foreach ($data as $obj) : ?>
         <tr>
