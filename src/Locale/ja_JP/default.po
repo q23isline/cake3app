@@ -66,6 +66,9 @@ msgstr "利用者"
 msgid "title"
 msgstr "タイトル"
 
+msgid "{0} post"
+msgstr "{0}個の投稿があります。"
+
 #: Template/Books/add.ctp:9
 #: Template/Books/edit.ctp:9
 #: Template/Books/index.ctp:9

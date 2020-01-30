@@ -33,6 +33,7 @@ class BoardsController extends AppController
             ->order(['Boards.id' => 'DESC'])
             ->contain(['People']);
         $this->set('data', $data);
+        $this->set('count', $data->count());
     }
 
     /**

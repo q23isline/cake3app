@@ -5,6 +5,7 @@
         ['action' => 'add']
     ) ?>
 </p>
+<p><?= __('{0} post', $count) ?></p>
 <div>
     <table>
         <tr>
