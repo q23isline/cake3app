@@ -24,6 +24,15 @@ $pStyle = [
 
 <h1 id="hello">サンプル見出し</h1>
 
+<p>
+    <?php
+        $this->Html->addCrumb('First', 'one');
+        $this->Html->addCrumb('Second', 'two');
+        $this->Html->addCrumb('Last', 'end');
+    ?>
+    <?= $this->Html->getCrumbs(' | ', 'TOP') ?>
+</p>
+
 <p style='<?= $this->Html->style($style, false) ?>'>
     Hello
 </p>
