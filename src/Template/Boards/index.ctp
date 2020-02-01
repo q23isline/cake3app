@@ -8,25 +8,23 @@
 <p><?= __('{0} post', $count) ?></p>
 <div>
     <table>
-        <tr>
-            <th width='25%'><?= __('user') ?></th>
-            <th><?= __('title') ?></th>
-        </tr>
-        <?php foreach ($data as $obj) : ?>
-        <tr>
-            <td>
-                <?= $this->Html->link(
-                    $obj['person']['name'],
-                    ['action' => 'show2', $obj['person_id']]
-                ) ?>
-            </td>
-            <td>
-                <?= $this->Html->link(
-                    $obj['title'],
-                    ['action' => 'show', $obj['id']]
-                ) ?>
-            </td>
-        </tr>
+        <?= $this->Html->tableHeaders(
+            ['ID', '投稿者', 'タイトル'],
+            [],
+            ['style' => 'color:#EEEEFF; background-color: #000099; font-weight:bold']
+        ) ?>
+        <?php foreach ($data as $obj): ?>
+        <?= $this->Html->tableCells(
+            [
+                $obj['id'],
+                $obj['person']['name'],
+                $obj['title'],
+            ],
+            ['style' => 'color:#000066; background-color: #CCCCFF'],
+            ['style' => 'color:#006600; background-color:#EEFFEE'],
+            false,
+            true
+        ) ?>
         <?php endforeach; ?>
     </table>
 </div>

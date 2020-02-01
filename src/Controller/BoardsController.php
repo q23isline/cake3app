@@ -8,6 +8,13 @@ use Cake\Validation\Validator;
 class BoardsController extends AppController
 {
     private $people;
+    public $paginate = [
+        'limit' => 5,
+        'order' => [
+            'id' => 'DESC',
+        ],
+        'contain' => ['People'],
+    ];
 
     /**
      * 初期化
@@ -18,7 +25,7 @@ class BoardsController extends AppController
     {
         parent::initialize();
         $this->people = TableRegistry::get('People');
-        I18n::locale('en_US');
+        $this->loadComponent('Paginator');
     }
 
     /**
@@ -28,10 +35,7 @@ class BoardsController extends AppController
      */
     public function index()
     {
-        $data = $this->Boards
-            ->find('all')
-            ->order(['Boards.id' => 'DESC'])
-            ->contain(['People']);
+        $data = $this->paginate($this->Boards);
         $this->set('data', $data);
         $this->set('count', $data->count());
     }
