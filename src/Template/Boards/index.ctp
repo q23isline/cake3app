@@ -8,11 +8,11 @@
 <p><?= __('{0} post', $count) ?></p>
 <div>
     <table>
-        <?= $this->Html->tableHeaders(
-            ['ID', '投稿者', 'タイトル'],
-            [],
-            ['style' => 'color:#EEEEFF; background-color: #000099; font-weight:bold']
-        ) ?>
+        <tr>
+            <th><?= $this->Paginator->sort('id', '投稿順') ?></th>
+            <th><?= $this->Paginator->sort('Person.name', '名前') ?></th>
+            <th><?= $this->Paginator->sort('title', 'タイトル') ?></th>
+        </tr>
         <?php foreach ($data as $obj): ?>
         <?= $this->Html->tableCells(
             [
