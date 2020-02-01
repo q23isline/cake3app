@@ -30,10 +30,7 @@
 
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first(' << first ') ?>
-            <?= $this->Paginator->prev(' < prev ') ?>
-            <?= $this->Paginator->next(' next > ') ?>
-            <?= $this->Paginator->last(' last >> ') ?>
+            <?= $this->Paginator->numbers() ?>
         </ul>
     </div>
 </div>
