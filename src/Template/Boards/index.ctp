@@ -31,8 +31,8 @@
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->numbers([
-                'before' => $this->Paginator->first('<<') . '・',
-                'after' => '・' . $this->Paginator->last('>>'),
+                'before' => $this->Paginator->hasPrev() ? $this->Paginator->first('<<') . '・' : '',
+                'after' => $this->Paginator->hasNext() ? '・' . $this->Paginator->last('>>') : '',
                 'modulus' => 4,
                 'separator' => '・',
             ]) ?>
