@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\BoardsController;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -25,33 +26,14 @@ class BoardsControllerTest extends TestCase
     ];
 
     /**
-     * Test initialize method
-     *
-     * @return void
-     */
-    public function testInitialize()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
      * Test index method
      *
      * @return void
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/boards');
+        $this->assertResponseOk();
     }
 
     /**
@@ -61,26 +43,28 @@ class BoardsControllerTest extends TestCase
      */
     public function testShow()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/boards/show/1');
+        $this->assertResponseOk();
     }
 
-    /**
-     * Test show2 method
-     *
-     * @return void
-     */
-    public function testShow2()
+    public function testAddPost()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+        // ↓テキストにはなし
+        // CakePHPのCSRF対策突破用
+        $this->cookie('csrfToken', 'test-token');
+        $this->_request['headers'] = ['X-CSRF-Token' => 'test-token'];
 
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $data = [
+            'name' => 'test name 1',
+            'password' => 'test password 1',
+            'title' => 'test new title 1',
+            'content' => 'test new content 1',
+        ];
+        $this->post('/boards/add', $data);
+
+        $this->assertResponseSuccess();
+        $boards = TableRegistry::get('Boards');
+        $query = $boards->find()->where(['title' => $data['title']]);
+        $this->assertEquals(1, $query->count());
     }
 }
