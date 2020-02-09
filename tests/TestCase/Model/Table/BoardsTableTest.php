@@ -58,7 +58,6 @@ class BoardsTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**
@@ -68,6 +67,15 @@ class BoardsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /** find Board test */
+    public function testBoardsTableFind()
+    {
+        $result = $this->BoardsTable->find('all')->first();
+        $this->assertFalse(empty($result));
+        $this->assertTrue(is_a($result, 'App\Model\Entity\Board'));
+        $this->assertEquals($result->id, 1001);
+        $this->assertStringStartsWith('test title 1', $result->title);
     }
 }
