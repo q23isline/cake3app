@@ -48,17 +48,17 @@ class BoardsController extends AppController
     public function add()
     {
         if ($this->request->isPost()) {
-            if (!$this->people->checkNameAndPass($this->request->data)) {
+            if (!$this->people->checkNameAndPass($this->request->getData())) {
                 $this->Flash->error('名前かパスワードを確認ください。');
             } else {
                 $res = $this->people->find()
-                    ->where(['name' => $this->request->data['name']])
-                    ->andWhere(['password' => $this->request->data['password']])
+                    ->where(['name' => $this->request->getData('name')])
+                    ->andWhere(['password' => $this->request->getData('password')])
                     ->first();
                 $board = $this->Boards->newEntity();
-                $board->name = $this->request->data['name'];
-                $board->title = $this->request->data['title'];
-                $board->content = $this->request->data['content'];
+                $board->name = $this->request->getData('name');
+                $board->title = $this->request->getData('title');
+                $board->content = $this->request->getData('content');
                 $board->person_id = $res['id'];
                 if ($this->Boards->save($board)) {
                     $this->redirect(['action' => 'index']);
