@@ -46,6 +46,11 @@ class BoardTest extends TestCase
      */
     public function testInitialization()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /** $this->Board test */
+    public function testBoardInstance()
+    {
+        $this->assertTrue(is_a($this->Board, 'App\Model\Entity\Board'));
     }
 }
