@@ -41,4 +41,25 @@ class BoardsFixture extends TestFixture
         ];
         parent::init();
     }
+
+    public $records = [
+        [
+            'id' => 1001,
+            'person_id' => 1001,
+            'title' => 'test title 1',
+            'content' => 'test content 1',
+        ],
+        [
+            'id' => 1002,
+            'person_id' => 1002,
+            'title' => 'test title 2',
+            'content' => 'test content 2',
+        ],
+        [
+            'id' => 1003,
+            'person_id' => 1003,
+            'title' => 'test title 3',
+            'content' => 'test content 3',
+        ],
+    ];
 }
