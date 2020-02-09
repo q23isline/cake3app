@@ -89,6 +89,9 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->fallbacks(DashedRoute::class);
+
+    // RSS拡張子を登録
+    $routes->extensions(['rss']);
 });
 
 /**
