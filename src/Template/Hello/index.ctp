@@ -15,6 +15,9 @@ $pStyle = [
 ];
 $res = $this->Text->autoLink('please check http://google.com/ .', []);
 echo $this->Html->para(null, $res, []);
+
+$str = "<p>please check <a href=\"http://google.com/\">http:www.tuyano.com/</a> .</p>";
+echo $this->Text->stripLinks($str);
 ?>
 
 <?= $this->Html->meta(
