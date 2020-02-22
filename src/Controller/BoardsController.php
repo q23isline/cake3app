@@ -35,9 +35,17 @@ class BoardsController extends AppController
      */
     public function index()
     {
-        $data = $this->paginate($this->Boards);
-        $this->set('data', $data);
-        $this->set('count', $data->count());
+        if ($this->RequestHandler->isRss()) {
+            $data = $this->Boards
+                ->find()
+                ->limit(10)
+                ->order(['id' => 'DESC']);
+            $this->set(compact('data'));
+        } else {
+            $data = $this->paginate($this->Boards);
+            $this->set('data', $data);
+            $this->set('count', $data->count());
+        }
     }
 
     /**
