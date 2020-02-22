@@ -46,6 +46,10 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
+    // 先頭に記述が必要
+    // RSS拡張子を登録
+    $routes->extensions(['rss']);
+
     // Register scoped middleware for in scopes.
     $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
         'httpOnly' => true
@@ -89,9 +93,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->fallbacks(DashedRoute::class);
-
-    // RSS拡張子を登録
-    $routes->extensions(['rss']);
 });
 
 /**
