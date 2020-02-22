@@ -13,6 +13,8 @@ $pStyle = [
     'align' => 'center',
     'font-size' => '24pt',
 ];
+$res = $this->Text->autoLink('please check http://google.com/ .', []);
+echo $this->Html->para(null, $res, []);
 ?>
 
 <?= $this->Html->meta(
