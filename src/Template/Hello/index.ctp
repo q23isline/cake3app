@@ -18,7 +18,17 @@ echo $this->Html->para(null, $res, []);
 
 $str = "<p>please check <a href=\"http://google.com/\">http:www.tuyano.com/</a> .</p>";
 echo $this->Text->stripLinks($str);
+
+$content = 'this is <b>sample page</b> for cake3app.';
 ?>
+
+<p><?= $this->Text->excerpt($content, 'page', 10, '***') ?></p>
+<p>
+    <?= $this->Text->truncate($content, 15, [
+        'ellipsis' => '...?',
+        'html' => true,
+    ]) ?>
+</p>
 
 <?= $this->Html->meta(
     'keywords',
