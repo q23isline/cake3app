@@ -40,6 +40,12 @@ $t1 = '2016-10-24 12:34:56';
     }
 </style>
 
+<p>
+    <?= $this->Time->timeAgoInWords('1999-12-24', [
+        'format' => 'Y-m-d',
+        'end' => '40 year',
+    ]) ?>
+</p>
 <pre><?php print_r($this->Time->toQuarter($t, true)) ?></pre>
 <p><?= $this->Time->format($t1, 'yyyy年MM月dd日 HH時mm分ss秒') ?></p>
 <p><?= $this->Time->nice($t1) ?></p>
