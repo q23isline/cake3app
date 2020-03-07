@@ -33,6 +33,8 @@ class HelloController extends AppController
             $result = "なにか書いて送信してください。";
         }
         $this->Flash->set('クリックすると消えます。');
+        $this->Flash->success('成功しました！', ['element' => 'flash']);
+        $this->Flash->error('失敗です...', ['element' => 'flash']);
         $this->set("result", $result);
     }
 
