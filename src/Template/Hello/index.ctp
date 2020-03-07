@@ -40,6 +40,18 @@ $t1 = '2016-10-24 12:34:56';
     }
 </style>
 
+<pre>
+    <?php
+    // シングルクウォートの\nは改行されないが、ダブルクウォートの\nは改行される
+    echo $this->Time->nice($t) . "について：\n";
+    echo $this->Time->isToday($t) ? "今日です\n" : "...\n";
+    echo $this->Time->wasYesterday($t) ? "昨日です\n" : "...\n";
+    echo $this->Time->isTomorrow($t) ? "明日です\n" : "...\n";
+    echo $this->Time->isThisWeek($t) ? "今週です\n" : "...\n";
+    echo $this->Time->isThisMonth($t) ? "今月です\n" : "...\n";
+    echo $this->Time->isThisYear($t) ? "今年です\n" : "...\n";
+    ?>
+</pre>
 <p>
     <?= $this->Time->timeAgoInWords('1999-12-24', [
         'format' => 'Y-m-d',
