@@ -10,13 +10,11 @@ class HelloController extends AppController
      */
     public function initialize()
     {
-        // テキストにないが、Flashコンポーネントが読み込まれないため追加
         parent::initialize();
-
-        // デフォルトのレイアウトはFlashメッセージを自動的に表示するため、オリジナルレイアウト読み込み処理はコメント
-        // $this->viewBuilder()->layout('Hello');
-        // $this->set('msg', 'Hello/index');
-        // $this->set('footer', 'Hello\footer2');
+        // ↓テキストではコメントではないが、CakePHP3.8.9ではデフォルトでCSRFが有効であり、
+        // ここでも有効の設定を行うとトークンが一致しなくなり、エラーとなるためコメント化
+        // CakePHP3.6以降からmiddlewareレベルで有効らしい
+        // $this->loadComponent('Csrf');
     }
 
     /**
@@ -26,37 +24,14 @@ class HelloController extends AppController
      */
     public function index()
     {
-        $result = "";
         if ($this->request->isPost()) {
-            $result = $this->request->data['HelloForm']['date'];
+            if (!empty($this->request->data['name']) && !empty($this->request->data['password'])) {
+                $this->Flash->success('OK!');
+            } else {
+                $this->Flash->error('bad...');
+            }
         } else {
-            $result = "なにか書いて送信してください。";
+            $this->Flash->info('please input form:');
         }
-        $this->Flash->set('クリックすると消えます。');
-        $this->Flash->success('成功しました！', ['element' => 'flash']);
-        $this->Flash->error('失敗です...', ['element' => 'flash']);
-        $this->Flash->info('infoメッセージを表示します。');
-        $this->Flash->set('メッセージを表示します。', [
-            'element' => 'info',
-            'key' => 'info',
-        ]);
-        $this->set("result", $result);
-    }
-
-    /**
-     * フォーム送信
-     *
-     * @return void
-     */
-    public function sendForm()
-    {
-        $str = $this->request->data('text1');
-        $result = "";
-        if ($str != "") {
-            $result = "you type: " . $str;
-        } else {
-            $result = "empty.";
-        }
-        $this->set("result", h($result));
     }
 }
