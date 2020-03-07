@@ -42,6 +42,8 @@ $d = '2015-1-1';
     }
 </style>
 
+<div><?= $this->Flash->render('info') ?></div>
+
 <p>
     <?php echo $this->Time->wasWithinLast($w, $d) ? '今日は、' . $d . 'から' . $w . '以内です。' : '範囲外！' ?>
 </p>
