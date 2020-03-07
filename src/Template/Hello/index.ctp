@@ -25,6 +25,8 @@ $hstr = $this->Text->highlight($content1, 'ハイライト表示', [
     'format' => '<span class="highlight">\1</span>',
     'html' => true,
 ]);
+
+$num = '12345.6789';
 ?>
 
 <style type='text/css'>
@@ -34,6 +36,10 @@ $hstr = $this->Text->highlight($content1, 'ハイライト表示', [
         font-weight: bold;
     }
 </style>
+
+<p><?= $this->Number->currency($num, 'EUR') ?></p>
+<p><?= $this->Number->precision($num, 3) ?></p>
+<p><?= $this->Number->toPercentage($num, 1) ?></p>
 
 <?= $this->Html->para('p', $hstr) ?>
 <p><?= $this->Text->excerpt($content, 'page', 10, '***') ?></p>
