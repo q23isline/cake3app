@@ -38,3 +38,5 @@
 </div>
 
 <?= $this->RgbText->blueLink('※トップに戻る', '/') ?>
+
+<?= $this->element('SampleBanner') ?>
