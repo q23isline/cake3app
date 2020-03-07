@@ -40,6 +40,7 @@ $t1 = '2016-10-24 12:34:56';
     }
 </style>
 
+<pre><?php print_r($this->Time->toQuarter($t, true)) ?></pre>
 <p><?= $this->Time->format($t1, 'yyyy年MM月dd日 HH時mm分ss秒') ?></p>
 <p><?= $this->Time->nice($t1) ?></p>
 <p><?= $this->Time->toAtom($t1) ?></p>
