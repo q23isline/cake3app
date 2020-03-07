@@ -29,6 +29,7 @@ $hstr = $this->Text->highlight($content1, 'ハイライト表示', [
 $num = '12345.6789';
 
 $t = time();
+$t1 = '2016-10-24 12:34:56';
 ?>
 
 <style type='text/css'>
@@ -39,6 +40,10 @@ $t = time();
     }
 </style>
 
+<p><?= $this->Time->format($t1, 'yyyy年MM月dd日 HH時mm分ss秒') ?></p>
+<p><?= $this->Time->nice($t1) ?></p>
+<p><?= $this->Time->toAtom($t1) ?></p>
+<p><?= $this->Time->toRSS($t1) ?></p>
 <p><?= $this->Time->fromString($t) ?></p>
 <p><?= $this->Time->toUnix($t) ?></p>
 <p><?= $this->Time->gmt($t) ?></p>
