@@ -35,6 +35,7 @@ class HelloController extends AppController
         $this->Flash->set('クリックすると消えます。');
         $this->Flash->success('成功しました！', ['element' => 'flash']);
         $this->Flash->error('失敗です...', ['element' => 'flash']);
+        $this->Flash->info('infoメッセージを表示します。');
         $this->set("result", $result);
     }
 
