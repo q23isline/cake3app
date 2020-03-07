@@ -1,9 +1,8 @@
-<h1><?= __('board') ?></h1>
+<h1><?= $this->RgbText->redString(__('board')) ?></h1>
 <p>
-    <?= $this->Html->link(
-        __('post'),
-        ['action' => 'add']
-    ) ?>
+    <a href="/boards/add">
+        <?= $this->RgbText->greenString(__('post')) ?>
+    </a>
 </p>
 <p><?= __('{0} post', $count) ?></p>
 <div>
@@ -39,3 +38,7 @@
         </ul>
     </div>
 </div>
+
+<a href="/">
+    <?= $this->RgbText->blueString('※トップに戻る') ?>
+</a>

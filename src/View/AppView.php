@@ -40,5 +40,6 @@ class AppView extends View
             'templates' => 'my-paginator-temp',
         ]);
         $this->loadHelper('Rss');
+        $this->loadHelper('RgbText');
     }
 }
