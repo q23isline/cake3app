@@ -40,6 +40,7 @@ $num = '12345.6789';
 <p><?= $this->Number->currency($num, 'EUR') ?></p>
 <p><?= $this->Number->precision($num, 3) ?></p>
 <p><?= $this->Number->toPercentage($num, 1) ?></p>
+<p><?= $this->Number->toReadableSize(12345678) ?></p>
 
 <?= $this->Html->para('p', $hstr) ?>
 <p><?= $this->Text->excerpt($content, 'page', 10, '***') ?></p>
