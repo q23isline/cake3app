@@ -10,9 +10,13 @@ class HelloController extends AppController
      */
     public function initialize()
     {
-        $this->viewBuilder()->layout('Hello');
-        $this->set('msg', 'Hello/index');
-        $this->set('footer', 'Hello\footer2');
+        // テキストにないが、Flashコンポーネントが読み込まれないため追加
+        parent::initialize();
+
+        // デフォルトのレイアウトはFlashメッセージを自動的に表示するため、オリジナルレイアウト読み込み処理はコメント
+        // $this->viewBuilder()->layout('Hello');
+        // $this->set('msg', 'Hello/index');
+        // $this->set('footer', 'Hello\footer2');
     }
 
     /**
@@ -28,6 +32,7 @@ class HelloController extends AppController
         } else {
             $result = "なにか書いて送信してください。";
         }
+        $this->Flash->set('クリックすると消えます。');
         $this->set("result", $result);
     }
 
