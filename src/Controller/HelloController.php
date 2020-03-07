@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use Cake\Event\Event;
+
 class HelloController extends AppController
 {
     /**
@@ -15,6 +17,21 @@ class HelloController extends AppController
         // ここでも有効の設定を行うとトークンが一致しなくなり、エラーとなるためコメント化
         // CakePHP3.6以降からmiddlewareレベルで有効らしい
         // $this->loadComponent('Csrf');
+    }
+
+    /**
+     * 事前処理
+     *
+     * @param Event $event イベント
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        // ↓テキストではコメントではないが、componentでCSRFが設定できないために、
+        // 以下で無効にすることはできない
+        // config/routes.phpのscopeでそれぞれ手動で有効、無効の設定を記述することで
+        // 部分的な対応が可能そうである
+        // $this->eventManager()->off($this->Csrf);
     }
 
     /**
