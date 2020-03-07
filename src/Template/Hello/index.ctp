@@ -27,6 +27,8 @@ $hstr = $this->Text->highlight($content1, 'ハイライト表示', [
 ]);
 
 $num = '12345.6789';
+
+$t = time();
 ?>
 
 <style type='text/css'>
@@ -36,6 +38,10 @@ $num = '12345.6789';
         font-weight: bold;
     }
 </style>
+
+<p><?= $this->Time->fromString($t) ?></p>
+<p><?= $this->Time->toUnix($t) ?></p>
+<p><?= $this->Time->gmt($t) ?></p>
 
 <p><?= $this->Number->currency($num, 'EUR') ?></p>
 <p><?= $this->Number->precision($num, 3) ?></p>
