@@ -2,26 +2,22 @@
 <p>
     <?= $this->RgbText->greenLink(__('post'), '/boards/add') ?>
 </p>
-<p><?= __('{0} post', $count) ?></p>
+
 <div>
     <table>
         <tr>
-            <th><?= $this->Paginator->sort('id', '投稿順') ?></th>
-            <th><?= $this->Paginator->sort('Person.name', '名前') ?></th>
-            <th><?= $this->Paginator->sort('title', 'タイトル') ?></th>
+            <th>id</th>
+            <th>name</th>
+            <th>title</th>
+            <th>content</th>
         </tr>
-        <?php foreach ($data as $obj): ?>
-        <?= $this->Html->tableCells(
-            [
-                $obj['id'],
-                $obj['person']['name'],
-                $obj['title'],
-            ],
-            ['style' => 'color:#000066; background-color: #CCCCFF'],
-            ['style' => 'color:#006600; background-color:#EEFFEE'],
-            false,
-            true
-        ) ?>
+        <?php foreach ($data as $arr): ?>
+        <tr>
+            <td><?= $arr['id'] ?></td>
+            <td><?= $arr['person']['name'] ?></td>
+            <td><?= $arr['title'] ?></td>
+            <td><?= $arr['content'] ?></td>
+        </tr>
         <?php endforeach; ?>
     </table>
 

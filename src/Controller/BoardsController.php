@@ -26,6 +26,7 @@ class BoardsController extends AppController
         parent::initialize();
         $this->people = TableRegistry::get('People');
         $this->loadComponent('Paginator');
+        $this->loadComponent('DataArray');
 
         // ログインなしですべてのアクションを許可
         $this->Auth->allow();
@@ -38,17 +39,9 @@ class BoardsController extends AppController
      */
     public function index()
     {
-        if ($this->RequestHandler->isRss()) {
-            $data = $this->Boards
-                ->find()
-                ->limit(10)
-                ->order(['id' => 'DESC']);
-            $this->set(compact('data'));
-        } else {
-            $data = $this->paginate($this->Boards);
-            $this->set('data', $data);
-            $this->set('count', $data->count());
-        }
+        $data = $this->paginate($this->Boards); // ページネーション利用
+        // $data = $this->Boards->find('all'); // 通常のfind利用
+        $this->set('data', $this->DataArray->getMergedArray($data));
     }
 
     /**
