@@ -51,5 +51,33 @@ class AppController extends Controller
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
+
+        $this->loadComponent('Auth', [
+            // Controllerを利用して認証
+            'authorize' => [
+                'Controller',
+            ],
+            // 認証に関する設定
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password',
+                    ],
+                ],
+            ],
+            // ログイン後のリダイレクト設定
+            'loginRedirect' => [
+                'controller' => 'Users',
+                'action' => 'index',
+            ],
+            // ログアウト後のリダイレクト設定
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login',
+            ],
+            // 認証エラーのメッセージ
+            'authError' => 'ログインしてください。',
+        ]);
     }
 }

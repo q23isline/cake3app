@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,6 +13,19 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    /**
+     * 事前処理
+     *
+     * @param Event $event イベント
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Auth->allow(['add', 'login']);
+    }
+
     /**
      * Index method
      *
@@ -102,5 +116,60 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * ログイン
+     *
+     * @return \Cake\Http\Response|null ログインのアドレスにリダイレクト
+     */
+    public function login()
+    {
+        if ($this->request->isPost()) {
+            $user = $this->Auth->identify();
+            if (!empty($user)) {
+                $this->Auth->setUser($user);
+
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error('ユーザー名かパスワードが間違っています。');
+        }
+    }
+
+    /**
+     * ログアウト
+     *
+     * @return \Cake\Http\Response ログアウトのアドレスにリダイレクト
+     */
+    public function logout()
+    {
+        $this->request->session()->destroy();
+
+        return $this->redirect($this->Auth->logout());
+    }
+
+    /**
+     * 認証済みかどうか
+     *
+     * @param object $user Userモデルオブジェクト
+     * @return bool 認証済であればtrue、それ以外はfalse
+     */
+    public function isAuthorized($user = null)
+    {
+        $action = $this->request->params['action'];
+
+        if (in_array($action, ['index' => 'view'])) {
+            return true;
+        }
+
+        if ($user['role'] === 'admin') {
+            return true;
+        }
+
+        if ($user['role'] === 'user') {
+            return true;
+        }
+
+        return false;
     }
 }
