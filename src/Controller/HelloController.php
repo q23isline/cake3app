@@ -26,6 +26,8 @@ class HelloController extends AppController
         $this->Cookie->config('secure', false);
         $this->Cookie->config('httpOnly', true);
         $this->Cookie->config('encryption', false);
+
+        $this->loadComponent('Security');
     }
 
     /**
@@ -46,6 +48,10 @@ class HelloController extends AppController
 
         // ログインなしですべてのアクションを許可
         $this->Auth->allow();
+
+        $this->Security->config('blackHoleCallback', 'error');
+        // セキュアな場合のみ受け付ける
+        $this->Security->requireSecure();
     }
 
     /**
@@ -69,5 +75,23 @@ class HelloController extends AppController
         $val = $this->request->query['val'];
         $this->Cookie->write('mykey', $val);
         $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * エラー
+     *
+     * @return void
+     */
+    public function error()
+    {
+        echo "<html>
+                <head>
+                    <title>ERROR</title>
+                </head>
+                <body style='background-color: black; color: white;'>
+                    <h1>SECURITY ERROR!!!</h1>
+                </body>
+            </html>";
+        exit;
     }
 }
