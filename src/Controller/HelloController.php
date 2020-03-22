@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Cake\Event\Event;
+use Cake\Network\Exception\InvalidCsrfTokenException;
 
 class HelloController extends AppController
 {
@@ -17,6 +18,14 @@ class HelloController extends AppController
         // ここでも有効の設定を行うとトークンが一致しなくなり、エラーとなるためコメント化
         // CakePHP3.6以降からmiddlewareレベルで有効らしい
         // $this->loadComponent('Csrf');
+
+        $this->loadComponent('Cookie');
+        $this->Cookie->config('path', '/');
+        $this->Cookie->config('domain', 'localhost');
+        $this->Cookie->config('expires', 0);
+        $this->Cookie->config('secure', false);
+        $this->Cookie->config('httpOnly', true);
+        $this->Cookie->config('encryption', false);
     }
 
     /**
@@ -46,14 +55,19 @@ class HelloController extends AppController
      */
     public function index()
     {
-        if ($this->request->isPost()) {
-            if (!empty($this->request->data['name']) && !empty($this->request->data['password'])) {
-                $this->Flash->success('OK!');
-            } else {
-                $this->Flash->error('bad...');
-            }
-        } else {
-            $this->Flash->info('please input form:');
-        }
+        $data = $this->Cookie->read('mykey');
+        $this->set('data', $data);
+    }
+
+    /**
+     * 書き込み
+     *
+     * @return void
+     */
+    public function write()
+    {
+        $val = $this->request->query['val'];
+        $this->Cookie->write('mykey', $val);
+        $this->redirect(['action' => 'index']);
     }
 }
