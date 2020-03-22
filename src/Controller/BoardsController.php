@@ -26,6 +26,9 @@ class BoardsController extends AppController
         parent::initialize();
         $this->people = TableRegistry::get('People');
         $this->loadComponent('Paginator');
+
+        // ログインなしですべてのアクションを許可
+        $this->Auth->allow();
     }
 
     /**

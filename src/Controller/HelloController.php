@@ -32,6 +32,11 @@ class HelloController extends AppController
         // config/routes.phpのscopeでそれぞれ手動で有効、無効の設定を記述することで
         // 部分的な対応が可能そうである
         // $this->eventManager()->off($this->Csrf);
+
+        parent::initialize();
+
+        // ログインなしですべてのアクションを許可
+        $this->Auth->allow();
     }
 
     /**

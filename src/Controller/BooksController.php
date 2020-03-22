@@ -13,6 +13,19 @@ use App\Controller\AppController;
 class BooksController extends AppController
 {
     /**
+     * 初期化
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        // ログインなしですべてのアクションを許可
+        $this->Auth->allow();
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null
