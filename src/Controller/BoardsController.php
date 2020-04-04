@@ -41,7 +41,7 @@ class BoardsController extends AppController
     {
         $data = $this->paginate($this->Boards); // ページネーション利用
         // $data = $this->Boards->find('all'); // 通常のfind利用
-        $this->set('data', $this->DataArray->getMergedArray($data));
+        $this->set('data', $this->DataArray->getMergedArray('boards'));
     }
 
     /**

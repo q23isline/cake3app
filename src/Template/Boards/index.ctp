@@ -5,20 +5,22 @@
 
 <div>
     <table>
+        <?php $flg = true ?>
+        <?php foreach ($merged as $arr) : ?>
+        <?php if ($flg) : ?>
         <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>title</th>
-            <th>content</th>
+            <?php foreach ($arr as $key => $item) : ?>
+            <th><?= $key ?></th>
+            <?php endforeach ?>
         </tr>
-        <?php foreach ($data as $arr): ?>
+        <?php $flg = false ?>
+        <?php endif ?>
         <tr>
-            <td><?= $arr['id'] ?></td>
-            <td><?= $arr['person']['name'] ?></td>
-            <td><?= $arr['title'] ?></td>
-            <td><?= $arr['content'] ?></td>
+            <?php foreach ($arr as $item): ?>
+            <td><?= $item ?></td>
+            <?php endforeach ?>
         </tr>
-        <?php endforeach; ?>
+        <?php endforeach ?>
     </table>
 
     <div class="paginator">
