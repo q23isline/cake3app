@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use Cake\Network\Exception\InvalidCsrfTokenException;
+use Cake\ORM\TableRegistry;
 
 class HelloController extends AppController
 {
@@ -27,7 +28,7 @@ class HelloController extends AppController
         $this->Cookie->config('httpOnly', true);
         $this->Cookie->config('encryption', false);
 
-        $this->loadComponent('Security');
+        $this->boards = TableRegistry::get('Boards');
     }
 
     /**
@@ -48,10 +49,6 @@ class HelloController extends AppController
 
         // ログインなしですべてのアクションを許可
         $this->Auth->allow();
-
-        $this->Security->config('blackHoleCallback', 'error');
-        // セキュアな場合のみ受け付ける
-        $this->Security->requireSecure();
     }
 
     /**
@@ -63,6 +60,9 @@ class HelloController extends AppController
     {
         $data = $this->Cookie->read('mykey');
         $this->set('data', $data);
+
+        $board = $this->boards->anyData();
+        $this->set('board', $board);
     }
 
     /**
@@ -75,23 +75,5 @@ class HelloController extends AppController
         $val = $this->request->query['val'];
         $this->Cookie->write('mykey', $val);
         $this->redirect(['action' => 'index']);
-    }
-
-    /**
-     * エラー
-     *
-     * @return void
-     */
-    public function error()
-    {
-        echo "<html>
-                <head>
-                    <title>ERROR</title>
-                </head>
-                <body style='background-color: black; color: white;'>
-                    <h1>SECURITY ERROR!!!</h1>
-                </body>
-            </html>";
-        exit;
     }
 }

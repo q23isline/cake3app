@@ -18,6 +18,7 @@ class BoardsTable extends Table
     {
         $this->belongsTo('People');
         $this->addBehavior('Translate', ['fields' => ['title']]);
+        $this->addBehavior('SuperTable');
     }
 
     /**
