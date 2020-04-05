@@ -261,6 +261,7 @@ return [
             'database' => ROOT . DS . 'db' . DS . 'mydata.sqlite3',
             'encoding' => 'utf8',
             'cacheMetadata' => true,
+            'log' => true,
         ],
         'default2' => [
             'className' => 'Cake\Database\Connection',
