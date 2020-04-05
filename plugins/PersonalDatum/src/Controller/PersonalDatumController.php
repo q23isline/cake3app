@@ -8,6 +8,19 @@ use Cake\ORM\TableRegistry;
 class PersonalDatumController extends AppController
 {
     /**
+     * 初期化
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        // ログインなしですべてのアクションを許可
+        $this->Auth->allow();
+    }
+
+    /**
      * 一覧
      *
      * @return void
