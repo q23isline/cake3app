@@ -201,3 +201,10 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
+// テキストでは記載が必要とのことだが、cakePHP3.6以降のため、
+// plugin作成時にsrc/Application.phpにて定義済
+// Plugin::load('PersonalDatum', [
+//     'bootstrap' => false,
+//     'routes' => true,
+// ]);
