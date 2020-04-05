@@ -29,7 +29,7 @@
             <?php foreach ($nextBoards as $nextBoard): ?>
             <tr>
                 <td><?= $this->Number->format($nextBoard->id) ?></td>
-                <td><?= $nextBoard->has('parent_next_board') ? $this->Html->link($nextBoard->parent_next_board->title, ['controller' => 'NextBoards', 'action' => 'view', $nextBoard->parent_next_board->id]) : '' ?></td>
+                <td><?= $nextBoard->has('parent_id') && $nextBoard->parent_id !== 0 ? $this->Html->link($nextBoard->parent_id, ['controller' => 'NextBoards', 'action' => 'view', $nextBoard->parent_id]) : '' ?></td>
                 <td><?= $nextBoard->has('person') ? $this->Html->link($nextBoard->person->name, ['controller' => 'People', 'action' => 'view', $nextBoard->person->id]) : '' ?></td>
                 <td><?= h($nextBoard->title) ?></td>
                 <td><?= h($nextBoard->content) ?></td>

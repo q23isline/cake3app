@@ -8,8 +8,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Next Boards'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Parent Next Boards'), ['controller' => 'NextBoards', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Parent Next Board'), ['controller' => 'NextBoards', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List People'), ['controller' => 'People', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Person'), ['controller' => 'People', 'action' => 'add']) ?></li>
     </ul>
@@ -19,7 +17,10 @@
     <fieldset>
         <legend><?= __('Add Next Board') ?></legend>
         <?php
-            echo $this->Form->control('parent_id', ['options' => $parentNextBoards]);
+            // 参考書ではtextメソッドだったがラベルを表示するためcontrolのtype=textを指定
+            echo $this->Form->control('parent_id', [
+                'type' => 'text',
+            ]);
             echo $this->Form->control('person_id', ['options' => $people]);
             echo $this->Form->control('title');
             echo $this->Form->control('content');

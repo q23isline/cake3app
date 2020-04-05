@@ -9,9 +9,7 @@ use Cake\Validation\Validator;
 /**
  * NextBoards Model
  *
- * @property \App\Model\Table\NextBoardsTable&\Cake\ORM\Association\BelongsTo $ParentNextBoards
  * @property \App\Model\Table\PeopleTable&\Cake\ORM\Association\BelongsTo $People
- * @property \App\Model\Table\NextBoardsTable&\Cake\ORM\Association\HasMany $ChildNextBoards
  *
  * @method \App\Model\Entity\NextBoard get($primaryKey, $options = [])
  * @method \App\Model\Entity\NextBoard newEntity($data = null, array $options = [])
@@ -42,17 +40,9 @@ class NextBoardsTable extends Table
 
         $this->addBehavior('Tree');
 
-        $this->belongsTo('ParentNextBoards', [
-            'className' => 'NextBoards',
-            'foreignKey' => 'parent_id',
-        ]);
         $this->belongsTo('People', [
             'foreignKey' => 'person_id',
             'joinType' => 'INNER',
-        ]);
-        $this->hasMany('ChildNextBoards', [
-            'className' => 'NextBoards',
-            'foreignKey' => 'parent_id',
         ]);
     }
 
@@ -67,6 +57,12 @@ class NextBoardsTable extends Table
         $validator
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
+
+        $validator
+            ->requirePresence('parent_id');
+
+        $validator
+            ->requirePresence('person_id');
 
         $validator
             ->scalar('title')
@@ -92,7 +88,6 @@ class NextBoardsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parent_id'], 'ParentNextBoards'));
         $rules->add($rules->existsIn(['person_id'], 'People'));
 
         return $rules;

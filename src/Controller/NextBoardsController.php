@@ -13,6 +13,19 @@ use App\Controller\AppController;
 class NextBoardsController extends AppController
 {
     /**
+     * 初期化
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        parent::initialize();
+
+        // ログインなしですべてのアクションを許可
+        $this->Auth->allow();
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Http\Response|null
@@ -20,7 +33,7 @@ class NextBoardsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['ParentNextBoards', 'People'],
+            'contain' => ['People'],
         ];
         $nextBoards = $this->paginate($this->NextBoards);
 
@@ -37,7 +50,7 @@ class NextBoardsController extends AppController
     public function view($id = null)
     {
         $nextBoard = $this->NextBoards->get($id, [
-            'contain' => ['ParentNextBoards', 'People', 'ChildNextBoards'],
+            'contain' => ['People'],
         ]);
 
         $this->set('nextBoard', $nextBoard);
@@ -60,9 +73,8 @@ class NextBoardsController extends AppController
             }
             $this->Flash->error(__('The next board could not be saved. Please, try again.'));
         }
-        $parentNextBoards = $this->NextBoards->ParentNextBoards->find('list', ['limit' => 200]);
         $people = $this->NextBoards->People->find('list', ['limit' => 200]);
-        $this->set(compact('nextBoard', 'parentNextBoards', 'people'));
+        $this->set(compact('nextBoard', 'people'));
     }
 
     /**
@@ -86,9 +98,8 @@ class NextBoardsController extends AppController
             }
             $this->Flash->error(__('The next board could not be saved. Please, try again.'));
         }
-        $parentNextBoards = $this->NextBoards->ParentNextBoards->find('list', ['limit' => 200]);
         $people = $this->NextBoards->People->find('list', ['limit' => 200]);
-        $this->set(compact('nextBoard', 'parentNextBoards', 'people'));
+        $this->set(compact('nextBoard', 'people'));
     }
 
     /**
@@ -109,5 +120,56 @@ class NextBoardsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * 親ノードと子ノードを一覧表示する
+     *
+     * @param int $id NextBoardsテーブルのID
+     * @return void
+     */
+    public function show($id = null)
+    {
+        if (empty($id)) {
+            $this->getTreeBoard(0);
+        } else {
+            $this->getTreeBoard($id);
+        }
+    }
+
+    /**
+     * NextBoardsとその子を取得する
+     *
+     * @param int $id NextBoardsテーブルのID
+     * @return void
+     */
+    public function getTreeBoard($id)
+    {
+        if ($id != 0) {
+            $data = $this->NextBoards
+                ->find()
+                ->where(['NextBoards.id' => $id])
+                ->contain(['People']);
+            $this->set('data', $data);
+            if (!empty($data)) {
+                $child = $this->NextBoards
+                    ->find('children', ['for' => $id], false)
+                    ->find('threaded')
+                    ->contain(['People']);
+                $this->set('child', $child);
+            }
+        } else {
+            $query = $this->NextBoards->find('treeList', [
+                'keyPath' => 'id',
+                'valuePath' => 'title',
+                'spacer' => '　　',
+            ]);
+            $this->set('query', $query);
+            $child = $this->NextBoards
+                ->find()
+                ->where(['parent_id' => 0])
+                ->contain(['People']);
+            $this->set('child', $child);
+        }
     }
 }
