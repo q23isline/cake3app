@@ -5,22 +5,24 @@
 
 <div>
     <table>
-        <?php $flg = true ?>
-        <?php foreach ($merged as $arr) : ?>
-        <?php if ($flg) : ?>
         <tr>
-            <?php foreach ($arr as $key => $item) : ?>
-            <th><?= $key ?></th>
-            <?php endforeach ?>
+            <th><?= $this->Paginator->sort('id', '投稿順') ?></th>
+            <th><?= $this->Paginator->sort('Person.name', '名前') ?></th>
+            <th><?= $this->Paginator->sort('title', 'タイトル') ?></th>
         </tr>
-        <?php $flg = false ?>
-        <?php endif ?>
-        <tr>
-            <?php foreach ($arr as $item): ?>
-            <td><?= $item ?></td>
-            <?php endforeach ?>
-        </tr>
-        <?php endforeach ?>
+        <?php foreach ($data as $obj): ?>
+        <?= $this->Html->tableCells(
+            [
+                $obj['id'],
+                $obj['person']['name'],
+                $obj['title'],
+            ],
+            ['style' => 'color:#000066; background-color: #CCCCFF'],
+            ['style' => 'color:#006600; background-color:#EEFFEE'],
+            false,
+            true
+        ) ?>
+        <?php endforeach; ?>
     </table>
 
     <div class="paginator">

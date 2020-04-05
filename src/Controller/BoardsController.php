@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
@@ -26,10 +27,21 @@ class BoardsController extends AppController
         parent::initialize();
         $this->people = TableRegistry::get('People');
         $this->loadComponent('Paginator');
-        $this->loadComponent('DataArray');
 
         // ログインなしですべてのアクションを許可
         $this->Auth->allow();
+    }
+
+    /**
+     * 事前処理
+     *
+     * @param Event $event イベント
+     * @return void
+     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        I18n::locale('ja');
     }
 
     /**
@@ -40,8 +52,7 @@ class BoardsController extends AppController
     public function index()
     {
         $data = $this->paginate($this->Boards); // ページネーション利用
-        // $data = $this->Boards->find('all'); // 通常のfind利用
-        $this->set('data', $this->DataArray->getMergedArray('boards'));
+        $this->set('data', $data);
     }
 
     /**

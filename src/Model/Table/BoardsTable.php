@@ -17,6 +17,7 @@ class BoardsTable extends Table
     public function initialize(array $config)
     {
         $this->belongsTo('People');
+        $this->addBehavior('Translate', ['fields' => ['title']]);
     }
 
     /**
