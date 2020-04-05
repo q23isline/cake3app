@@ -21,6 +21,7 @@ use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\Route\Route;
 
 /**
  * The default class to use for all routes
@@ -49,6 +50,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     // 先頭に記述が必要
     // RSS拡張子を登録
     $routes->extensions(['rss']);
+
+    // テキストでは呼び出しているが、バージョンアップにより不要となったらしい
+    // Plugin::routes();
 
     // Register scoped middleware for in scopes.
     $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
