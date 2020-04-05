@@ -61,7 +61,11 @@ class HelloController extends AppController
         $data = $this->Cookie->read('mykey');
         $this->set('data', $data);
 
-        $board = $this->boards->anyData();
+        $board = $this->boards
+            ->find('something', [
+                'field' => 'title',
+                'value' => '%hoge%',
+            ]);
         $this->set('board', $board);
     }
 
