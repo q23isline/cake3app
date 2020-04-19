@@ -10,15 +10,15 @@ class MyCmdShell extends Shell
     /**
      * 主処理
      *
-     * @param int $n 繰り返す回数
+     * @param array $num 足したい数値
      * @return void
      */
-    public function main($n)
+    public function main(...$num)
     {
         $res = 0;
-        for ($i = 1; $i <= $n; $i++) {
-            $res += $i;
+        foreach ($num as $n) {
+            $res += $n;
         }
-        $this->out("1から{$n}までの合計: " . $res);
+        $this->out('合計: ' . $res);
     }
 }
