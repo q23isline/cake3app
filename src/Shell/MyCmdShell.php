@@ -29,26 +29,45 @@ class MyCmdShell extends Shell
         $this->out('[P]eople');
         $t = $this->in('テーブルを選択: ', ['B', 'P'], 'B');
         $t = strtoupper($t);
-        $table = null;
-        $id = $this->in('ID番号を入力: ', null, 1);
-        $data = null;
+        $n = $this->in('ID番号を入力: ', null, 1);
         switch ($t) {
             case 'B':
-                $table = 'Boards';
-                $this->loadModel('Boards');
-                $data = $this->Boards->get($id);
+                $this->boards($n);
                 break;
             case 'P':
-                $table = 'People';
-                $this->loadModel('People');
-                $data = $this->People->get($id);
+                $this->people($n);
                 break;
             default:
                 $this->info("can't access Database...");
                 exit();
         }
-        $this->out();
-        $this->out("※{$table} id={$id} のレコード: ");
+    }
+
+    /**
+     * Boardsテーブルの1レコードを表示する
+     *
+     * @param int $id BoardsテーブルのID
+     * @return void
+     */
+    public function boards($id)
+    {
+        $this->loadModel('Boards');
+        $data = $this->Boards->get($id);
+        $this->out("※Boards id = {$id}");
+        $this->out(print_r($data->toArray()));
+    }
+
+    /**
+     * Peopleテーブルの1レコードを表示する
+     *
+     * @param int $id PeopleテーブルのID
+     * @return void
+     */
+    public function people($id)
+    {
+        $this->loadModel('People');
+        $data = $this->People->get($id);
+        $this->out("※People id = {$id}");
         $this->out(print_r($data->toArray()));
     }
 }
