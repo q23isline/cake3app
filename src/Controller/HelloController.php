@@ -20,15 +20,7 @@ class HelloController extends AppController
         // CakePHP3.6以降からmiddlewareレベルで有効らしい
         // $this->loadComponent('Csrf');
 
-        $this->loadComponent('Cookie');
-        $this->Cookie->config('path', '/');
-        $this->Cookie->config('domain', 'localhost');
-        $this->Cookie->config('expires', 0);
-        $this->Cookie->config('secure', false);
-        $this->Cookie->config('httpOnly', true);
-        $this->Cookie->config('encryption', false);
-
-        $this->boards = TableRegistry::get('Boards');
+        $this->loadComponent('PersonalDatum.PersonalDataInfo');
     }
 
     /**
@@ -58,26 +50,7 @@ class HelloController extends AppController
      */
     public function index()
     {
-        $data = $this->Cookie->read('mykey');
+        $data = $this->PersonalDataInfo->getByName('tuyano');
         $this->set('data', $data);
-
-        $board = $this->boards
-            ->find('something', [
-                'field' => 'title',
-                'value' => '%hoge%',
-            ]);
-        $this->set('board', $board);
-    }
-
-    /**
-     * 書き込み
-     *
-     * @return void
-     */
-    public function write()
-    {
-        $val = $this->request->query['val'];
-        $this->Cookie->write('mykey', $val);
-        $this->redirect(['action' => 'index']);
     }
 }
