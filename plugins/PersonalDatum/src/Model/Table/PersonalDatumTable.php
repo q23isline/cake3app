@@ -17,6 +17,8 @@ class PersonalDatumTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
+
+        $this->addBehavior('PersonalDatum.ByNumber');
     }
 
     /**
