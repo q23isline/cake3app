@@ -41,5 +41,6 @@ class AppView extends View
         ]);
         $this->loadHelper('Rss');
         $this->loadHelper('RgbText');
+        $this->loadHelper('PersonalDatum.PersonalDataInfo');
     }
 }

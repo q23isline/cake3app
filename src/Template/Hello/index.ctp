@@ -15,18 +15,4 @@ div.box {
 
 <p>※<?= $data->username ?> の情報</p>
 
-<ul>
-    <li><span class="bold">NAME:</span><?= $data->username ?></li>
-    <li><span class="bold">MAIL:</span><?= $data->email ?></li>
-    <li><span class="bold">TEL :</span><?= $data->tel ?></li>
-</ul>
-
-<div class="box">
-    <span class="bold">ADDRESS:</span><br>
-    <?= $data->address ?>
-</div>
-
-<div class="box">
-    <span class="bold">COMMENT:</span><br>
-    <?= $data->comment ?>
-</div>
+<?= $this->PersonalDataInfo->showPersonalDataInfo($data) ?>
