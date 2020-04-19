@@ -15,4 +15,4 @@ div.box {
 
 <p>※<?= $data->username ?> の情報</p>
 
-<?= $this->PersonalDataInfo->showPersonalDataInfo($data) ?>
+<pre><?php print_r($data->toArray()) ?></pre>

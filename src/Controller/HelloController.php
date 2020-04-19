@@ -20,6 +20,7 @@ class HelloController extends AppController
         // CakePHP3.6以降からmiddlewareレベルで有効らしい
         // $this->loadComponent('Csrf');
 
+        $this->pd = TableRegistry::get('PersonalDatum.PersonalDatum');
         $this->loadComponent('PersonalDatum.PersonalDataInfo');
     }
 
@@ -46,11 +47,12 @@ class HelloController extends AppController
     /**
      * 一覧
      *
+     * @param int $n 表示するn番目
      * @return void
      */
-    public function index()
+    public function index($n)
     {
-        $data = $this->PersonalDataInfo->getByName('tuyano');
+        $data = $this->pd->getByNumber($n);
         $this->set('data', $data);
     }
 }
