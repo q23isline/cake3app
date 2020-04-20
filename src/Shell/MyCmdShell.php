@@ -39,4 +39,16 @@ class MyCmdShell extends Shell
         $this->Db->main();
         $this->Db->get($table, $id);
     }
+
+    /**
+     * bakeの引数ごとのヘルプを表示する
+     *
+     * @param string $target bakeの引数
+     * @return void
+     */
+    public function bh($target)
+    {
+        $this->out("※「bake {$target}」のヘルプを表示します。");
+        $this->dispatchShell('bake', $target, '-h');
+    }
 }
